@@ -8,4 +8,9 @@ public class BaseTest {
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
+
+    String getRandomString() {
+        UUID uuid = UUID.randomUUID();
+        return uuid.toString();
+    }
 }
