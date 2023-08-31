@@ -9,9 +9,20 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 public class LoginTests extends BaseTest {
+
     @Test
-    public void loginEmptyEmailPassword() {
-//      Added ChromeOptions argument below to fix websocket error
+    public void deletePlaylist()  throws InterruptedException {
+        String expectedPlaylistDeletedMessage = "Deleted playlist \"TestPro Playlist.\"";
+
+        provideEmail("demo@class.com");
+        providePassword("tes$tStudent");
+        clickSubmit();
+        openPlaylist();
+        clickDeletePlaylistBtn();
+        Assert.assertEquals(getDeletedPlaylistMsg(), expectedPlaylistDeletedMessage);
+//
+
+//    }
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
@@ -22,5 +33,4 @@ public class LoginTests extends BaseTest {
         driver.get(url);
         Assert.assertEquals(driver.getCurrentUrl(), url);
         driver.quit();
-    }
 }
